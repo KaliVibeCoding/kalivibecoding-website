@@ -1,0 +1,23 @@
+{
+  "name": "kalivibecoding-api",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "db:migrate": "wrangler d1 execute kalivibecoding-db --remote --file=schema.sql",
+    "db:migrate:local": "wrangler d1 execute kalivibecoding-db --local --file=schema.sql",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@hono/zod-validator": "0.4.5",
+    "hono": "4.12.23",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "4.20260523.1",
+    "typescript": "5.9.2",
+    "wrangler": "4.83.0"
+  }
+}

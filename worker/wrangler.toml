@@ -1,0 +1,51 @@
+name = "kalivibecoding-api"
+main = "src/index.ts"
+compatibility_date = "2026-08-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+ENVIRONMENT = "production"
+CF_ACCOUNT_ID = "SET_VIA_WRANGLER_OR_DASHBOARD"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "kalivibecoding-db"
+database_id = "REPLACE_WITH_OUTPUT_FROM_wrangler_d1_create"
+
+[[kv_namespaces]]
+binding = "KV_SESSIONS"
+id = "REPLACE_WITH_OUTPUT_FROM_wrangler_kv_namespace_create_sessions"
+
+[[kv_namespaces]]
+binding = "KV_CACHE"
+id = "REPLACE_WITH_OUTPUT_FROM_wrangler_kv_namespace_create_cache"
+
+[[kv_namespaces]]
+binding = "KV_RATELIMIT"
+id = "REPLACE_WITH_OUTPUT_FROM_wrangler_kv_namespace_create_ratelimit"
+
+[[r2_buckets]]
+binding = "R2_ASSETS"
+bucket_name = "kalivibecoding-assets"
+
+[[queues.producers]]
+binding = "QUEUE_JOBS"
+queue = "kalivibecoding-jobs"
+
+[observability]
+enabled = true
+
+[observability.logs]
+head_sampling_rate = 1
+
+[observability.traces]
+enabled = true
+
+[[routes]]
+pattern = "kalivibecoding-api.kalivibecoding.com/*"
+zone_name = "kalivibecoding.com"
+
+# Secrets (set via: wrangler secret put KVC_EMAIL_TOKEN)
+# wrangler secret put KVC_EMAIL_TOKEN
+# wrangler secret put GHL_WEBHOOK_URL
+# wrangler secret put SENTRY_DSN
