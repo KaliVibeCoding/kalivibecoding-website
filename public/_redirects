@@ -1,0 +1,14 @@
+# KVC Website Redirects
+
+# www → apex
+https://www.kalivibecoding.com/* https://kalivibecoding.com/:splat 301
+
+# Legacy paths
+/home                    /                  301
+/about-us                /about             301
+/contact-us              /contact           301
+/our-programs            /programs          301
+/government              /government-contracts 301
+
+# API passthrough to Worker (proxy)
+/api/*  https://kalivibecoding-api.kalivibecoding.com/api/:splat  200
